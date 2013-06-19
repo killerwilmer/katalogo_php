@@ -1,0 +1,26 @@
+<? echo View::partial("katalogo/header_fabricante") ?>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("katalogo/menu_fabricante") ?>
+        </div>
+        <div class="span10">
+            <?php View::content(); ?>
+            <h3>Editar menu</h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+
+            <label>Nombre
+                <?php echo Form::text('fabricantes.nombre') ?></label>
+
+            <label>Activo
+                <?php echo Form::text('fabricantes.activo') ?></label>
+
+            <?php echo Form::hidden('fabricantes.id') ?>
+            <?php echo Form::submit('Actualizar', "class='btn btn-primary'") ?>
+
+            <?php echo Form::close() ?>
+        </div>
+    </div>
+</div>
