@@ -39,7 +39,7 @@ class CategoriaController extends ScaffoldController {
              */
             $categoria = new Categoria(Input::post('categorias'));
             //En caso que falle la operación de guardar
-            
+
             $categoria->activo = 1;
             $categoria->fechaactualizacion = Timestamp::getTimeStamp();
             if ($categoria->save()) {
@@ -50,6 +50,33 @@ class CategoriaController extends ScaffoldController {
             } else {
                 Flash::error('Falló Operación');
             }
+        }
+    }
+
+    /**
+     * Edita un Registro
+     *
+     * @param int $id (requerido)
+     */
+    public function editar($id) {
+        $categoria = new Categoria();
+
+        //se verifica si se ha enviado el formulario (submit)
+        if (Input::hasPost('categorias')) {
+
+            $categoria->fec = Timestamp::getTimeStamp();
+            $categoria->activo = 1;
+            $categoria->fechaactualizacion = Timestamp::getTimeStamp();
+            if ($categoria->update(Input::post('categorias'))) {
+                Flash::valid('Operación exitosa');
+                //enrutando por defecto al index del controller
+                return Router::redirect();
+            } else {
+                Flash::error('Falló Operación');
+            }
+        } else {
+            //Aplicando la autocarga de objeto, para comenzar la edición
+            $this->categorias = $categoria->find_by_id((int) $id);
         }
     }
 

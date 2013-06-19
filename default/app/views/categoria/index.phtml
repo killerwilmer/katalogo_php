@@ -1,0 +1,44 @@
+<? echo View::partial("katalogo/header_categoria") ?>
+
+<?php Tag::css('scaffold') ?>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("katalogo/menu_categoria") ?>
+        </div>
+        <div class="span10">
+            <h2>Listado de Categorias</h2>
+            <div id="scaffold">
+                <?php View::content() ?>
+                <?php if ($results->items) : ?>
+                    <table>
+                        <thead><tr>
+                                <?php foreach (current($results->items)->fields as $field) : ?>
+                                    <th><?php echo (current($results->items)->get_alias($field)) ?></th>
+                                <?php endforeach ?>
+                                <th>Acciones</th>
+                            </tr></thead>
+                        <tbody>
+                            <?php foreach ($results->items as $item) : ?>
+                                <tr>
+                                    <?php foreach ($item->fields as $field) : ?>
+                                        <td><?php eh($item->$field) ?></td>
+                                    <?php endforeach ?>
+                                    <td><?php echo Html::linkAction("ver/$item->id", 'Ver') ?> |
+                                        <?php echo Html::linkAction("editar/$item->id", 'Editar') ?> |
+                                        <?php echo Html::linkAction("borrar/$item->id", 'Borrar', 'onclick="return confirm(\'¿Está seguro?\')"') ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                    <?php View::partial('paginators/digg', false, array('page' => $results, 'url' => Router::get('controller_path') . '/index')); ?>
+
+                <?php else : // Si no hay items?>
+                    <h3>No hay ningún registro</h3>
+                <?php endif ?>
+
+            </div>
+        </div>
+    </div>
+</div>
