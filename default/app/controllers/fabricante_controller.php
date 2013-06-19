@@ -12,7 +12,7 @@
  */
 
 /**
- * Carga del modelo Menus...
+ * Carga del modelo Fabricantes...
  */
 Load::models('fabricante');
 

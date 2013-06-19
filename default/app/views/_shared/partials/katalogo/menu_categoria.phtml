@@ -1,0 +1,15 @@
+<div id="accordion">
+                          
+    <h3><a href="#">Menú Categorias</a></h3>
+    <div>
+        <div><? echo Html::link("categoria/crear/", "Nuevo") ?></div>
+        <div><? echo Html::link("categoria/index/", "Consultar") ?></div>
+        
+    </div>   
+</div>
+
+<script>
+    $(function() {
+        $( "#accordion" ).accordion();
+    });
+</script>
