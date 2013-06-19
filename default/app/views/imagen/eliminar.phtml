@@ -1,0 +1,6 @@
+<?echo View::partial("katalogo/header_imagen")?>
+<?echo Form::open()?>
+<div><?echo "Está seguro de eliminar la imagen:".$id?></div>
+<div><?echo Form::hidden("id",null,$id);?></div>
+<div><?echo Form::submit("Si","class='btn btn-primary'")?><?echo Html::link("imagen/index","  ó Volver")?></div>
+<?echo Form::close()?>

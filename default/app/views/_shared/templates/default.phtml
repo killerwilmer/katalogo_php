@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv='Content-type' content='text/html; charset=<?php echo APP_CHARSET ?>' />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>OpenByte - Katalogo</title>
+
+        <?php Tag::css('bootstrap/bootstrap.min'); ?>
+        <?php Tag::css('bootstrap/bootstrap-responsive.min'); ?>
+        <?php Tag::css('bootstrap/estilos'); ?>
+        <?php Tag::css('jqueryui/themes/custom-theme/jquery.ui.all') ?>
+        <?php Tag::css('zoom/mojozoom')?>
+        <?php echo Html::includeCss() ?>
+
+        <?php echo Tag::js('jquery/jquery-1.7.1.min') ?>
+        <?php echo Tag::js('jquery/ui/jquery.ui.core') ?>
+        <?php echo Tag::js('jquery/ui/jquery.ui.widget') ?>
+        <?php echo Tag::js('jquery/ui/jquery.ui.accordion') ?>
+        <?php echo Tag::js('jquery/jquery.kumbiaphp'); ?>
+        <?php echo Tag::js('bootstrap/bootstrap.min'); ?>
+        <?php echo Tag::js('zoom/mojozoom'); ?>
+        <?php echo Tag::js('global'); ?>
+
+
+    </head>
+    <body>
+
+        <? echo View::partial("katalogo/cabecera_admin") ?>
+
+
+        <div class="container">
+            <div id="contenido" class="content">
+                <?echo View::content()?>
+            </div>
+
+
+        </div>
+
+    </body>
+</html>

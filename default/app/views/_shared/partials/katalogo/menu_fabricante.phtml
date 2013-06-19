@@ -1,0 +1,15 @@
+<div id="accordion">
+                          
+    <h3><a href="#">Menú Fabricante</a></h3>
+    <div>
+        <div><? echo Html::link("fabricante/crear/", "Nuevo") ?></div>
+        <div><? echo Html::link("fabricante/index/", "Consultar") ?></div>
+        
+    </div>   
+</div>
+
+<script>
+    $(function() {
+        $( "#accordion" ).accordion();
+    });
+</script>

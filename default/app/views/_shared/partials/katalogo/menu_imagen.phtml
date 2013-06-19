@@ -1,0 +1,15 @@
+<div id="accordion">
+                          
+    <h3><a href="#">Menú Imagen</a></h3>
+    <div>
+        <div><? echo Html::link("imagen/nuevo/", "Nuevo") ?></div>
+        <div><? echo Html::link("imagen/index/", "Consultar") ?></div>
+        
+    </div>   
+</div>
+
+<script>
+    $(function() {
+        $( "#accordion" ).accordion();
+    });
+</script>

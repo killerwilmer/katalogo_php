@@ -1,0 +1,113 @@
+<? echo View::partial("katalogo/header_imagen") ?>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <b>Usted está relacionando productos para la imagen:</b>
+
+            <?
+            while ($resimg = $resimagen->fetchArray(SQLITE3_ASSOC)) {
+                $fecha = Timestamp::getTimeStamp();
+
+                file_put_contents("img/tempkatalogo/peque" . $fecha . ".jpg", $resimg['imagen']);
+                $ruta = PUBLIC_PATH . "img/";
+                echo Html::img("tempkatalogo/peque" . $fecha . ".jpg", "peque" . $fecha, "height='100' width='100' data-zoomsrc='$ruta/tempkatalogo/peque" . $fecha . ".jpg'");
+            }
+            ?>
+
+        </div>
+        <div class="span10">
+            <legend>Productos relacionados actualmente</legend>
+            <table class="table table-bordered table-striped">
+                <? while ($res = $result->fetchArray(SQLITE3_ASSOC)) { ?>
+                    <tr>
+                        <td>
+                            <? echo $res["idproducto"] ?></td>
+
+                        <td>
+                            <? echo $res["descripcion"] ?>
+                        </td>
+                        <td>
+                            <? $idrel = $res["id"] ?>
+                            <? echo Html::link("imagen/eliminarrelacion/$idimagen/$idrel", "Eliminar") ?>
+                        </td>
+                    </tr>
+                <? } ?>
+            </table>
+            <legend>Productos</legend>
+
+            <div>
+                <div><? View::content() ?></div>
+                <table>
+                    <tr>
+                        <td>
+                            <? echo Form::open() ?>
+                            <div>
+                            <? echo Form::label("Categoria:", "categoria") ?>
+                            <select id="categoria" name="marca">
+
+                                <? while ($combo = $combocategoria->fetchArray(SQLITE3_ASSOC)) { ?>
+                                    <? echo "<option value=" . $combo["marca"] . ">" . $combo["marca"] . "</option>" ?>
+
+                                <? } ?>
+
+                            </select>
+
+                            <? echo Form::submit("Buscar", "class='btn btn-primary'") ?>
+                            <? echo Form::hidden("idimagen", null, $idimagen) ?></div>
+                            <? echo Form::close() ?>
+
+                        </td>
+                        <td>
+                            <? echo Form::open() ?>
+                            <? echo Form::text("descripcion", "class='input-large' placeholder='Parte o nombre de producto..'") ?>
+                            <? echo Form::submit("Buscar por nombre", "class='btn btn-primary'"); ?>
+                            <? echo Form::hidden("idimagen", null, $idimagen) ?>
+                            <? echo Form::close() ?></td>
+                       
+                            <?echo Html::link("imagen/index", "Volver a imágenes")?>
+                            
+                    </tr>
+                </table>
+
+                <? echo Form::open("imagen/hacerrelacion/$idimagen") ?>
+
+                <? if ($productos != null) { ?>
+
+                    <table class="table table-bordered table-striped">
+
+                        <? while ($prod = $productos->fetchArray(SQLITE3_ASSOC)) { ?>
+                            <tr>
+                                <td>
+                                    <? echo Form::check("idproducto[]", $prod["idproducto"]) ?>
+                                </td>
+                                <td>
+                                    <? echo $prod["idproducto"] ?></td>
+
+                                <td>
+                                    <? echo $prod["descripcion"] ?>
+                                </td>
+                                <td>
+                                    <? $idproducto = $prod["idproducto"] ?>
+
+
+
+                                </td>
+                            </tr>
+
+                        <? } ?>
+                        <tr>
+                            <td colspan="3"><? if ($productos) {
+                        echo Form::submit("Guardar relaciones", "class='btn btn-primary'");
+                    }
+                    ?></td>
+                        </tr>
+                <? } ?>
+                </table>
+
+<? echo Form::close() ?>
+
+            </div>
+        </div>
+    </div>
+</div>

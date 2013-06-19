@@ -1,0 +1,43 @@
+<? echo View::partial("katalogo/header_imagen") ?>
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("katalogo/menu_imagen") ?>
+        </div>
+        <div class="span10">
+
+            <div>
+                <div><? echo View::content() ?></div>
+                <div><? echo Form::openMultipart() ?></div>
+
+                <div><? echo Form::label("Seleccione imagen:", "imagen") ?></div>
+
+                <div><? echo Form::file("imagen") ?></div>
+
+                <div><? echo Form::label("Categoria:", "categoria") ?>
+                    <select id="categoria" name="categoria">
+
+                        <? while ($combo = $combocategoria->fetchArray(SQLITE3_ASSOC)) { ?>
+                            <? echo "<option value=" . $combo["id"] . ">" . $combo["nombre"] . "</option>" ?>
+
+                        <? } ?>
+
+                    </select></div>
+
+                <? echo Form::submit("buscar", "class='btn btn-primary'") ?>
+
+
+
+                <? echo Form::close() ?>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+

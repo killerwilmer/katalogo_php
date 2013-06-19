@@ -1,0 +1,44 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <!-- <div id='cabecera' class="navbar navbar-fixed-top">-->
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand">Modulo de Administracion</a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class='menu_admin_usuarios_perfil'><? echo Html::link("", "Inicio") ?></li>
+                    </li>
+                    <li class='menu_admin_usuarios_index dropdown'><a href="/sistemas/backend/admin/usuarios/index#" class="dropdown-toggle" data-toggle="dropdown" >Administración de catálogo<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><? echo Html::link("imagen/index", "Imágenes") ?></li>
+                            <li><? echo Html::link("categoria/index", "Categorias") ?></li>
+                            <li><? echo Html::link("fabricante/index", "Fabricantes") ?></li>
+                        </ul>
+                    </li>
+                    </li>
+                    <li class='menu_admin_usuarios_index dropdown'><a href="/sistemas/backend/admin/usuarios/index#" class="dropdown-toggle" data-toggle="dropdown" >Datos externos <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class='menu_admin_usuarios'><? echo Html::link("datosexternos/clientes", "Clientes") ?></li>
+                            <li class='menu_admin_usuarios'><? echo Html::link("datosexternos/productos", "Productos") ?></li>
+                            <li class='menu_admin_usuarios'><? echo Html::link("datosexternos/inventario", "Inventario") ?></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="text-transform: capitalize;">
+                            usuario administrador del sistema                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/sistemas/backend/admin/index/logout"  >Salir</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<? echo View::partial("katalogo/header_fabricante") ?>
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("katalogo/menu_fabricante") ?>
+        </div>
+        <div class="span10">
+            <h2>Nuevo Fabricante</h2>
+
+            <div>
+                <div><? echo View::content() ?></div>
+                <div><? echo Form::open() ?></div>
+
+                <div><? echo Form::label("Nombre:", "nombre") ?></div>
+                <div><? echo Form::text('nombre') ?></div>
+
+                <? echo Form::submit("Crear", "class='btn btn-primary'") ?>
+
+                <? echo Form::close() ?>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

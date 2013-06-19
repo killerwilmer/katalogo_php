@@ -1,0 +1,65 @@
+
+<? echo View::partial("katalogo/header_imagen") ?>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("katalogo/menu_imagen") ?>
+        </div>
+        <div class="span10">
+
+            <table class="table table-bordered table-striped">
+
+                <thead>
+                <th>Id</th>
+                <th>Imagen</th>
+                <th>Categoria</th>
+                <th>Fecha act</th>
+                <th>Eliminar</th>
+                <th>Modificar</th>
+                </thead>
+                <?
+                $i = 0;
+
+
+
+                while ($res = $result->fetchArray(SQLITE3_ASSOC)) {
+                    ?>
+
+                    <tr>
+                        <td>
+                            <?
+                            $id = $res['id'];
+                            echo $id;
+                            ?>
+
+                        </td>
+                        <td>
+                            <? echo $res['nombre'] ?>
+                        </td>
+                        <td>
+                            <? echo $res['fechaactualizacion'] ?>
+                        </td>
+                        <td>
+                            <? echo Html::link("imagen/eliminar/$id", "Eliminar") ?>
+                        </td>
+                        <td><? echo Html::link("imagen/modificar/$id", "Modificar") ?>
+
+                        </td>
+                        <td><? echo Html::link("imagen/relacionar/$id", "Relacionar") ?>
+
+                        </td>
+
+                    </tr>   
+
+                    <? $i++;
+                }
+                ?>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
