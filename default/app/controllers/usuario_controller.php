@@ -10,18 +10,16 @@
  *
  * @author hidden
  */
-class UsuarioController extends ApplicationController {
+/**
+ * Carga del modelo Categorias...
+ */
+Load::models('usuario');
+
+class UsuarioController extends ScaffoldController {
 
     //put your code here
-    function index() {
-        $bd = Conexion::devolverCon();
-        $this->result = $bd->query("
-            select * from usuario ");
-
-        if (Input::hasPost("categoria")) {
-            $this->redirect("imagen/index/" . Input::post("categoria"));
-        }
-    }
+    public $model = "usuario";
+    public $scaffold = 'killer';
 
 }
 

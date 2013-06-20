@@ -6,20 +6,19 @@
  */
 
 /**
- * Description of categoria_controller
+ * Description of tipousuario_controller
  *
  * @author hidden
  */
-
 /**
- * Carga del modelo Categorias...
+ * Carga del modelo tipousuario...
  */
-Load::models('categoria');
+Load::models('tipousuario');
 
-class CategoriaController extends ScaffoldController {
+class TipousuarioController extends ScaffoldController {
 
     //put your code here
-    public $model = "categoria";
+    public $model = "tipousuario";
     public $scaffold = 'killer';
 
     /**
@@ -32,18 +31,18 @@ class CategoriaController extends ScaffoldController {
          * el cual aplica la autocarga de objeto para guardar los 
          * datos enviado por POST utilizando autocarga de objeto
          */
-        if (Input::hasPost('categorias')) {
+        if (Input::hasPost('tipousuarios')) {
             /**
              * se le pasa al modelo por constructor los datos del form y ActiveRecord recoge esos datos
              * y los asocia al campo correspondiente siempre y cuando se utilice la convención
              * model.campo
              */
-            $categoria = new Categoria(Input::post('categorias'));
+            $tipousuario = new tipousuario(Input::post('tipousuarios'));
             //En caso que falle la operación de guardar
 
-            $categoria->activo = 1;
-            $categoria->fechaactualizacion = Timestamp::getTimeStamp();
-            if ($categoria->save()) {
+            $tipousuario->activo = 1;
+            $tipousuario->fechaactualizacion = Timestamp::getTimeStamp();
+            if ($tipousuario->save()) {
                 Flash::valid('Operación exitosa');
                 //Eliminamos el POST, si no queremos que se vean en el form
                 Input::delete();
@@ -60,15 +59,14 @@ class CategoriaController extends ScaffoldController {
      * @param int $id (requerido)
      */
     public function editar($id) {
-        $categoria = new Categoria();
+        $tipousuario = new tipousuario();
 
         //se verifica si se ha enviado el formulario (submit)
-        if (Input::hasPost('categorias')) {
+        if (Input::hasPost('tipousuarios')) {
 
-            $categoria->fec = Timestamp::getTimeStamp();
-            $categoria->activo = 1;
-            $categoria->fechaactualizacion = Timestamp::getTimeStamp();
-            if ($categoria->update(Input::post('categorias'))) {
+            $tipousuario->activo = 1;
+            $tipousuario->fechaactualizacion = Timestamp::getTimeStamp();
+            if ($tipousuario->update(Input::post('tipousuarios'))) {
                 Flash::valid('Operación exitosa');
                 //enrutando por defecto al index del controller
                 return Router::redirect();
@@ -77,7 +75,7 @@ class CategoriaController extends ScaffoldController {
             }
         } else {
             //Aplicando la autocarga de objeto, para comenzar la edición
-            $this->categorias = $categoria->find_by_id((int) $id);
+            $this->tipousuarios = $tipousuario->find_by_id((int) $id);
         }
     }
 

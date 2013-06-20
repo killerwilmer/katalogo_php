@@ -1,0 +1,23 @@
+<? echo View::partial("katalogo/header_categoria") ?>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("katalogo/menu_categoria") ?>
+        </div>
+        <div class="span10">
+            <?php View::content(); ?>
+            <h3>Editar Categoria</h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+
+            <label>Nombre
+                <?php echo Form::text('tipousuarios.nombre') ?></label>
+
+            <?php echo Form::hidden('tipousuarios.id') ?>
+            <?php echo Form::submit('Actualizar', "class='btn btn-primary'") ?>
+
+            <?php echo Form::close() ?>
+        </div>
+    </div>
+</div>

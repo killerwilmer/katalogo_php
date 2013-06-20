@@ -1,0 +1,15 @@
+<div id="accordion">
+                          
+    <h3><a href="#">Menú Tipo Usuario</a></h3>
+    <div>
+        <div><? echo Html::link("tipousuario/crear/", "Nuevo") ?></div>
+        <div><? echo Html::link("tipousuario/index/", "Consultar") ?></div>
+        
+    </div>   
+</div>
+
+<script>
+    $(function() {
+        $( "#accordion" ).accordion();
+    });
+</script>

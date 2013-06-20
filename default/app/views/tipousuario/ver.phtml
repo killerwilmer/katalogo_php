@@ -1,0 +1,38 @@
+<? echo View::partial("katalogo/header_tipousuario") ?>
+
+<?php Tag::css('scaffold') ?>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("katalogo/menu_tipousuario") ?>
+        </div>
+        <div class="span10">
+            <h2>Ver Tipo Usuario</h2>
+            <div id="scaffold">
+                <?php View::content() ?>
+                <?php if ($result) : ?>
+                    <ul>
+                        <?php foreach ($result->fields as $field) : ?>
+                            <li><strong><?php echo $result->alias[$field] ?> :</strong>  <?php eh($result->$field) ?></li>
+                        <?php endforeach ?>
+                    </ul>
+
+                    <div class="actions">
+                        <a href="../">Listado</a>
+                        <a href="../crear/">Crear registro</a>
+                        <a href="../editar/<?php echo $result->id ?>">Editar</a>
+                        <a class="del" title="¿Seguro que quiere borrar?" href="../borrar/<?php echo $result->id ?>" onclick="return confirm('¿Está seguro?');">Borrar</a>
+                    </div>
+                <?php else : ?>
+                    <?php header("HTTP/1.0 404 Not Found") ?>
+                    <h1>No existe</h1>
+                    <div class="actions">
+                        <a href="../">Listado</a>
+                        <a href="../crear/">Crear registro</a>
+                    </div>
+                <?php endif ?>
+                <pre><?php //var_dump($result)    ?></pre>
+            </div>
+        </div>
+    </div>
+</div>
