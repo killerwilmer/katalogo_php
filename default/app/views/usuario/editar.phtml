@@ -33,7 +33,8 @@
                 <div><? echo Form::label("Tipo Usuario:", "tipousuario_id") ?></div>
                 <div><? echo Form::dbSelect('usuarios.tipousuario_id') ?></div>
 
-                <? echo Form::submit("Crear", "class='btn btn-primary'") ?>
+                <?php echo Form::hidden('usuarios.id') ?>
+                <?php echo Form::submit('Actualizar', "class='btn btn-primary'") ?>
 
                 <? echo Form::close() ?>
 
