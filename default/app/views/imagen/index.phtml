@@ -1,4 +1,3 @@
-
 <? echo View::partial("katalogo/header_imagen") ?>
 
 <div class="container-fluid">
@@ -7,30 +6,18 @@
             <? echo View::partial("katalogo/menu_imagen") ?>
         </div>
         <div class="span10">
-
             <div>
-
                 <? echo Form::open() ?>
-
                 <? echo Form::label("Categoria:", "categoria") ?>
                 <select id="categoria" name="categoria">
-
                     <? while ($combo = $combocategoria->fetchArray(SQLITE3_ASSOC)) { ?>
                         <? echo "<option value=" . $combo["id"] . ">" . $combo["nombre"] . "</option>" ?>
                     <? } ?>
-
                 </select>
-
                 <? echo Form::submit("Buscar", "class='btn btn-primary'") ?>
-
-
-
                 <? echo Form::close() ?>
-
             </div>
-
             <table class="table table-bordered table-striped">
-
                 <thead>
                 <th>Id</th>
                 <th>Imagen</th>
@@ -42,20 +29,10 @@
                 </thead>
                 <?
                 $i = 0;
-
-
-
                 while ($res = $result->fetchArray(SQLITE3_ASSOC)) {
                     ?>
-
                     <tr>
-                        <td>
-                            <?
-                            $id = $res['id'];
-                            echo $id;
-                            ?>
-
-                        </td>
+                        <td><?$id = $res['id']; echo $id;?></td>
                         <td>
                             <?
                             file_put_contents("img/tempkatalogo/" . $id . ".jpg", $res['imagen']);
@@ -63,31 +40,15 @@
                             echo Html::img("tempkatalogo/" . $id . ".jpg", $id, "height='50' width='50' data-zoomsrc='$ruta/tempkatalogo/$id.jpg'");
                             ?>
                         </td>
-                        <td>
-    <? echo $res['nombre'] ?>
-                        </td>
-                        <td>
-    <? echo $res['fechaactualizacion'] ?>
-                        </td>
-                        <td>
-    <? echo Html::link("imagen/eliminar/$id", "Eliminar") ?>
-                        </td>
-                        <td><? echo Html::link("imagen/modificar/$id", "Modificar") ?>
-
-                        </td>
-                        <td><? echo Html::link("imagen/relacionar/$id", "Relacionar") ?>
-
-                        </td>
-
+                        <td><? echo $res['nombre'] ?></td>
+                        <td><? echo $res['fechaactualizacion'] ?></td>
+                        <td><? echo Html::link("imagen/eliminar/$id", "Eliminar") ?></td>
+                        <td><? echo Html::link("imagen/modificar/$id", "Modificar") ?></td>
+                        <td><? echo Html::link("imagen/relacionar/$id", "Relacionar") ?></td>
                     </tr>   
-
-    <? $i++;
-} ?>
-
+                <? $i++;
+                } ?>
             </table>
         </div>
     </div>
 </div>
-
-
-
