@@ -72,7 +72,7 @@ class Validate {
     public static function maxLength($value, $max, $min = null) {
         $length = strlen($value);
         if ($min and $length < $min) {
-            return false
+            return false;
         }
         return ($length <= $max);
     }

@@ -14,11 +14,12 @@ class Conexion {
     //put your code here
     static function devolverCon(){
         return new SQLite3('../app/test/sqlite/dbs/katalogo.db'); 
-        
+        //return new SQLite3('/var/www/sqlite/dbs/katalogo.db');
     }
     
     static function devolverPDO(){
         return new PDO('sqlite:../app/test/sqlite/dbs/katalogo.db');
+	//return new SQLite3('/var/www/sqlite/dbs/katalogo.db');
     }
 }
 

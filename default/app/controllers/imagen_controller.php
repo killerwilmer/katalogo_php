@@ -53,57 +53,61 @@ class ImagenController extends ApplicationController {
 
                     $ruta = APP_PATH . "../public/img/upload/" . $nombre;
 
-                    $img = getimagesize($ruta);
-                    $ancho = $img[0];
-                    $alto = $img[1];
-
+                    //$img = getimagesize($ruta);
+                    //$ancho = $img[0];
+                    //$alto = $img[1];
+                    
+                    $tam_ideal =900;
+                    $ban =0;
+                    
+                    while($ban==0){
+                        $img = getimagesize($ruta);
+                        $ancho = $img[0];
+                        $alto = $img[1];
+                        
+                        if($ancho<=$tam_ideal && $alto<=$tam_ideal){
+                            $ban=1;
+                        }
+                        else{
+                            $nancho = $ancho - (($ancho*30)/100);
+                            $nalto = $alto - (($alto*30)/100);
+                            WideImage::load($ruta)->resize($nancho, $nalto, 'fill')->saveToFile($ruta);
+                        }
+                    }
+                    
+		    /*
                     if ($ancho > $alto) {
                         WideImage::load($ruta)->resize(800, 600, 'fill')->saveToFile($ruta);
                     } else if ($alto > $ancho) {
                         WideImage::load($ruta)->resize(600, 800, 'fill')->saveToFile($ruta);
                     } else if ($alto == $ancho) {
                         WideImage::load($ruta)->resize(800, 800, 'fill')->saveToFile($ruta);
-                    }
+                    }*/
 
-
-                    $cover = fopen($ruta, 'rb');
-
-
-
-                    $sql = "select tabla,autoincremental from autoincremental where tabla='imagen'";
-                    $con = Conexion::devolverCon();
-                    $autoinc = $con->query($sql);
-
-                    while ($auto = $autoinc->fetchArray(SQLITE3_ASSOC)) {
-                        $ultimoid = $auto["autoincremental"] + 1;
-                    }
-
-                    $sql = "insert into imagen (id,categoria_id,imagen,fechaactualizacion) values(?,?,?,?)";
+		    $cover = fopen($ruta, 'rb');
+                    $cat = Input::post("categoria");
+                    $fecha = Timestamp::getTimeStamp();
+                    
+                    //$bd->exec("INSERT INTO imagen(imagen, categoria_id, fechaactualizacion) VALUES('" . $cover . "', " . $cat . ", '" . $fecha . "')");
+                    
+                    $sql = "insert into imagen (imagen,categoria_id,fechaactualizacion) values(?,?,?)";
                     $db = Conexion::devolverPDO();
                     $q = $db->prepare($sql);
-                    $cat = Input::post("categoria");
-                    $q->bindParam(1, $ultimoid);
+                    $q->bindParam(1, $cover, PDO::PARAM_LOB);
                     $q->bindParam(2, $cat);
-                    $q->bindParam(3, $cover, PDO::PARAM_LOB);
-                    $fecha = Timestamp::getTimeStamp();
-                    $q->bindParam(4, $fecha);
+                    $q->bindParam(3, $fecha);
                     $q->execute();
+		    
                     $ultimoid = $db->lastInsertId();
+                    
+                    $sql2 = "insert into imagensync(id,fechaactualizacion) values($ultimoid,$fecha)";
+                    $db->exec($sql2);
 
-
-                    //actualizar el autoincremental
-
-
-
-                    $sql = "insert into imagensync(id,fechaactualizacion) values($ultimoid,$fecha)";
-                    $db->exec($sql);
-
-                    $sql = "update autoincremental set autoincremental=$ultimoid where tabla='imagen'";
+		    $sql = "update autoincremental set autoincremental=$ultimoid where tabla='imagen'";
                     $db->exec($sql);
 
                     $sql = "update autoincremental set autoincremental=$ultimoid where tabla='imagensync'";
                     $db->exec($sql);
-
 
                     Flash::valid('Archivo subido correctamente...!!!');
                 }
