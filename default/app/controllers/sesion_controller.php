@@ -27,7 +27,7 @@ class SesionController extends AppController {
                 if ($usu->tipousuario_id == 1) {//vendedor
                     Session::set("idproveedor", $usu->id);
                     Session::set("idtipoproveedor", $usu->tipousuario_id);
-                    Router::redirect("index");
+                    Router::redirect("/");
                 } else if ($usu->tipousuario_id == 2) {//admin
                     Session::set("idproveedor", $usu->id);
                     Session::set("idtipoproveedor", $usu->tipousuario_id);
