@@ -17,6 +17,13 @@
 Load::models('categoria');
 
 class CategoriaController extends ScaffoldController {
+    
+    public function index($page = 1) {
+        if (!Auth::is_valid()) {
+            Router::redirect("sesion/index");
+        }
+        parent::index($page);
+    }
 
     //put your code here
     public $model = "categoria";
@@ -26,6 +33,11 @@ class CategoriaController extends ScaffoldController {
      * Crea un Registro
      */
     public function crear() {
+        
+        if (!Auth::is_valid()) {
+            Router::redirect("sesion/index");
+        }
+        
         /**
          * Se verifica si el usuario envio el form (submit) y si ademas 
          * dentro del array POST existe uno llamado "menus"
@@ -60,6 +72,11 @@ class CategoriaController extends ScaffoldController {
      * @param int $id (requerido)
      */
     public function editar($id) {
+        
+        if (!Auth::is_valid()) {
+            Router::redirect("sesion/index");
+        }
+        
         $categoria = new Categoria();
 
         //se verifica si se ha enviado el formulario (submit)

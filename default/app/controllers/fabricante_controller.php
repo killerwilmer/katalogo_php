@@ -17,12 +17,23 @@
 Load::models('fabricante');
 
 class FabricanteController extends ScaffoldController {
+    
+    public function index($page = 1) {
+        if (!Auth::is_valid()) {
+            Router::redirect("sesion/index");
+        }
+        parent::index($page);
+    }
 
     //put your code here
     public $model = 'fabricante';
     public $scaffold = 'killer';
 
     function crear() {
+        if (!Auth::is_valid()) {
+            Router::redirect("sesion/index");
+        }
+        
         $bd = Conexion::devolverCon();
 
         if (Input::hasPost("nombre")) {
@@ -45,6 +56,11 @@ class FabricanteController extends ScaffoldController {
      * @param int $id (requerido)
      */
     public function editar($id) {
+        
+        if (!Auth::is_valid()) {
+            Router::redirect("sesion/index");
+        }
+        
         $fabricante = new Fabricante();
 
         //se verifica si se ha enviado el formulario (submit)

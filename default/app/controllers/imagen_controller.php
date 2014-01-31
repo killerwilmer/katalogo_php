@@ -15,6 +15,9 @@ class ImagenController extends ApplicationController {
     //$bd=null;
     //put your code here
     function index($categoria = 1) {
+        if (!Auth::is_valid()) {
+            $this->redirect("sesion/index");
+        }
         $bd = Conexion::devolverCon();
         $row = array();
         $this->result = $bd->query("

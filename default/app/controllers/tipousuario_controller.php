@@ -16,6 +16,13 @@
 Load::models('tipousuario');
 
 class TipousuarioController extends ScaffoldController {
+    
+    public function index($page = 1) {
+        if (!Auth::is_valid()) {
+            Router::redirect("sesion/index");
+        }
+        parent::index($page);
+    }
 
     //put your code here
     public $model = "tipousuario";
@@ -25,6 +32,11 @@ class TipousuarioController extends ScaffoldController {
      * Crea un Registro
      */
     public function crear() {
+        
+        if (!Auth::is_valid()) {
+            Router::redirect("sesion/index");
+        }
+        
         /**
          * Se verifica si el usuario envio el form (submit) y si ademas 
          * dentro del array POST existe uno llamado "menus"
@@ -59,6 +71,11 @@ class TipousuarioController extends ScaffoldController {
      * @param int $id (requerido)
      */
     public function editar($id) {
+        
+        if (!Auth::is_valid()) {
+            Router::redirect("sesion/index");
+        }
+        
         $tipousuario = new tipousuario();
 
         //se verifica si se ha enviado el formulario (submit)
