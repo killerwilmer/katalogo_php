@@ -19,7 +19,7 @@ class PedidosController extends AppController {
         Flash::valid($pr->dato);
     }
     
-    function grabar($var){
+    function grabar($var,$var2){
         
         
             
@@ -35,7 +35,7 @@ class PedidosController extends AppController {
                 $pr->dato = $val;
                 $pr->save();
             }*/
-            $pr->dato = $var;
+            $pr->dato = $var."-".$var2;
             $pr->save();
             
             
