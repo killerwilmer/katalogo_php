@@ -26,7 +26,7 @@ class PedidosController extends AppController {
             
             
             $pr = new Prueba();
-            $pr->dato = $this->post;
+            $pr->dato = count($_POST);
             $pr->save();
         
         }
