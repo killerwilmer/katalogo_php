@@ -26,7 +26,7 @@ class PedidosController extends AppController {
             
             
             $pr = new Prueba();
-            $pr->dato = count($_REQUEST);
+            $pr->dato = $_REQUEST[0];
             
             $pr->save();
             //$pr->dato = count($_REQUEST);
