@@ -27,11 +27,16 @@ class PedidosController extends AppController {
             
             $pr = new Prueba();
             
-            $arr = array();
-            $arr = $REQUEST;
-            $pr->dato = $arr;
+            //$arr = array();
+            //$arr = $REQUEST;
             
-            $pr->save();
+            
+            foreach($_REQUEST as $val){
+                $pr->dato = $val;
+                $pr->save();
+            }
+            
+            
             
             //$pr->dato = $arr;
             //$pr->save();
