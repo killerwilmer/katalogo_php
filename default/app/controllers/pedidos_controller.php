@@ -19,14 +19,19 @@ class PedidosController extends AppController {
         Flash::valid($pr->dato);
     }
     
-    function grabar(){
+    function grabar($dato){
         
         
-            $this->post = $_POST["cliente_id"];
+            //$this->post = $_POST["cliente_id"];
             
             
             $pr = new Prueba();
             $pr->dato = count($_POST);
+            
+            $pr->save();
+            $pr->dato = count($_REQUEST);
+            $pr->save();
+            $pr->dato =  $dato;
             $pr->save();
         
         }
