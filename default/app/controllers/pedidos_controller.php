@@ -11,42 +11,35 @@
  * @author usuario
  */
 Load::models("prueba");
+
 class PedidosController extends AppController {
+
     //put your code here
-    function index(){
+    function index() {
         $pr = new Prueba();
         $pr->find_first(1);
         Flash::valid($pr->dato);
     }
-    
-    function grabar($var,$var2){
-        
-        
-            
-            
-            
-            $pr = new Prueba();
-            
-            //$arr = array();
-            //$arr = $REQUEST;
-            
-            
-            /*foreach($_GET as $val){
-                $pr->dato = $val;
-                $pr->save();
-            }*/
-            $pr->dato = $var."-".$var2;
-            $pr->save();
-            
-            
-            //$pr->dato = $arr;
-            //$pr->save();
-            //$pr->dato = count($_REQUEST);
-            //$pr->save();
-            //$pr->dato =  $dato;
-            //$pr->save();
-        
+
+    function grabar($cliente_id, $usuario_id, $fechacreacion, $fechamodificacion, $estado, $nit, $observacion) {
+        View::response("view");
+        $ped = new Pedido();
+        $ped->cliente_id = $cliente_id;
+        $ped->usuario_id = $usuario_id;
+        $ped->fechacreacion = $fechacreacion;
+        $ped->fechamodificacion = $fechamodificacion;
+        $ped->estado = $estado;
+        $ped->nit = $nit;
+        $ped->observacion = $observacion;
+
+        if ($ped->save()) {
+            $this->arr = array("resultado" => "exito");
+        } else {
+            $this->arr = array("resultado" => "fracaso");
         }
+        
+    }
+
 }
 
 ?>
