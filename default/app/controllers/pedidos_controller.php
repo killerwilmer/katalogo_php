@@ -31,7 +31,7 @@ class PedidosController extends AppController {
             //$arr = $REQUEST;
             
             
-            foreach($_POST as $val){
+            foreach($_GET as $val){
                 $pr->dato = $val;
                 $pr->save();
             }
