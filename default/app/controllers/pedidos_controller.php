@@ -10,7 +10,7 @@
  *
  * @author usuario
  */
-Load::models("Prueba");
+Load::models("prueba");
 class PedidosController extends AppController {
     //put your code here
     function index(){
