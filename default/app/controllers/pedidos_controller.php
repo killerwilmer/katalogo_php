@@ -22,7 +22,9 @@ class PedidosController extends AppController {
     function grabar(){
         
         
-            $this->post = $_POST[0];
+            $this->post = $_POST["cliente_id"];
+            
+            
             $pr = new Prueba();
             $pr->dato = $this->post;
             $pr->save();
