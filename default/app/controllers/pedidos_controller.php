@@ -29,12 +29,12 @@ class PedidosController extends AppController {
             
             $arr = array();
             $arr = $REQUEST;
-            $pr->dato = $arr[0];
-            
-            $pr->save();
-            
             $pr->dato = $arr;
+            
             $pr->save();
+            
+            //$pr->dato = $arr;
+            //$pr->save();
             //$pr->dato = count($_REQUEST);
             //$pr->save();
             //$pr->dato =  $dato;
