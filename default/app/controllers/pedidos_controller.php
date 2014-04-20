@@ -19,7 +19,7 @@ class PedidosController extends AppController {
         Flash::valid($pr->dato);
     }
     
-    function grabar(){
+    function grabar($var){
         
         
             
@@ -31,10 +31,11 @@ class PedidosController extends AppController {
             //$arr = $REQUEST;
             
             
-            foreach($_GET as $val){
+            /*foreach($_GET as $val){
                 $pr->dato = $val;
                 $pr->save();
-            }
+            }*/
+            $pr->dato = $var;
             
             
             
