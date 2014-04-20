@@ -10,7 +10,7 @@
  *
  * @author usuario
  */
-Load::models("prueba");
+Load::models("prueba","Pedido");
 
 class PedidosController extends AppController {
 
