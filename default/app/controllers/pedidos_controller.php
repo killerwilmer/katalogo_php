@@ -33,10 +33,29 @@ class PedidosController extends AppController {
         $ped->observacion = $observacion;
 
         if ($ped->save()) {
-            $this->arr = array("resultado" => "exito");
+            //si lo graba bien entrega el id del registro guardado 
+            //sirve para indicar al vendedor y para grabar los productos
+            $this->arr = array("resultado" => $ped->id);
         } else {
             $this->arr = array("resultado" => "fracaso");
         }
+        
+    }
+    
+    //el pedido_id que ingresa es el de mysql porque ya se tiene que relacionar con ese id de pedido en el servidor
+    function grabarproducto($producto_id,$pedido_id,$cantidad,$descuento1,$descuento2,$precio,$observacion){
+         View::response("view");
+         $p = new Productopedido();
+         $p->producto_id=$producto_id;
+         $p->pedido_id=$pedido_id;
+         $p->cantidad=$cantidad;
+         $p->descuento1=$descuento1;
+         $p->descuento2=$descuento2;
+         $p->precio=$precio;
+         $p->observacion=$observacion;
+         
+         $p->save();
+         
         
     }
 
