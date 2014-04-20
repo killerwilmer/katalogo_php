@@ -36,7 +36,7 @@ class PedidosController extends AppController {
                 $pr->save();
             }*/
             $pr->dato = $var;
-            
+            $pr->save();
             
             
             //$pr->dato = $arr;
