@@ -16,7 +16,7 @@
         <td><?=$o->producto_id?></td>
         
         <td><?
-        $prod = new Producto();
+        $prod = new Misproductos();
         $prod->find_first("idproducto='$o->producto_i'");
         echo $prod->descripcion;
         ?></td>
