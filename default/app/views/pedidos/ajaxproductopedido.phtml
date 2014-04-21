@@ -14,6 +14,12 @@
     <tr>
         <td><?=$o->id?></td>
         <td><?=$o->producto_id?></td>
+        
+        <td><?
+        $prod = new Producto();
+        $prod->find_first("idproducto='$o->producto_i'");
+        echo $prod->descripcion;
+        ?></td>
         <td><?=$o->pedido_id?></td>
         <td><?=$o->cantidad?></td>
         <td><?=$o->descuento1?></td>
