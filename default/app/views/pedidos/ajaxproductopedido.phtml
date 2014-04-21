@@ -18,7 +18,7 @@
         <td><?
         $bd = Conexion::devolverCon();
         $result = $bd->query("select descripcion from misproductos where idproducto=$o->id");
-        echo $result->columnName("descripcion");
+        echo $result->columnName(0);
         ?></td>
         <td><?=$o->pedido_id?></td>
         <td><?=$o->cantidad?></td>
