@@ -54,7 +54,13 @@ class PedidosController extends AppController {
          $p->precio=$precio;
          $p->observacion=$observacion;
          
-         $p->save();
+         if ($p->save()) {
+            //si lo graba bien entrega el id del registro guardado 
+            //sirve para indicar al vendedor y para grabar los productos
+            $this->arr = array("resultado" => $p->id);
+        } else {
+            $this->arr = array("resultado" => "fracaso");
+        }
          
         
     }
