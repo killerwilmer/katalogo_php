@@ -16,9 +16,10 @@ class PedidosController extends AppController {
 
     //put your code here
     function index() {
-        $pr = new Prueba();
-        $pr->find_first(1);
-        Flash::valid($pr->dato);
+        $pr = new Pedido();
+        $this->arr = array();
+        $this->arr = $pr->find();
+       
     }
 
     function grabar($cliente_id, $usuario_id, $fechacreacion, $fechamodificacion, $estado, $nit, $observacion) {
@@ -63,6 +64,14 @@ class PedidosController extends AppController {
         }
          
         
+    }
+    
+    function ajaxproductopedido(){
+        View::response("view");
+        $var = Input::post("pedido_id");
+        $p = new Productopedido();
+        $this->prods = array();
+        $this->prods = $p->find("pedido_id=$var");
     }
 
 }

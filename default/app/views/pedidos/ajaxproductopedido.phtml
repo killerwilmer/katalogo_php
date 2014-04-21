@@ -1,0 +1,26 @@
+<table class="table-bordered">
+    <thead>
+    <th>id</th>
+    <th>producto_id</th>
+    <th>pedido_id</th>
+    <th>cantidad</th>
+    <th>descuento1</th>
+    <th>descuento2</th>
+    <th>precio</th>
+    <th>observacion</th>
+    </thead>
+<?foreach($prods as $o){?>
+
+    <tr>
+        <td><?=$o->id?></td>
+        <td><?=$o->producto_id?></td>
+        <td><?=$o->pedido_id?></td>
+        <td><?=$o->cantidad?></td>
+        <td><?=$o->descuento1?></td>
+        <td><?=$o->descuento2?></td>
+        <td><?=$o->precio?></td>
+        <td><?=$o->observacion?></td>
+    </tr>
+
+<? } ?>
+</table>
