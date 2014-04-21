@@ -1,1 +1,37 @@
-<?echo View::content()?>
+<div class="row">
+<div id="pedidos" class="span4">
+    <input type="button" id="recargar" class="btn-danger" value="Recargar"><br>
+    <?foreach($arr as $obj){?>
+        
+    <a href="#" class="ped" id="<?=$obj->id?>"><?echo "Pedido:". $obj->id?></a><br>
+    
+    <?}?>
+</div>
+    <div id="detalle" class="span8">
+        detalle
+    </div>
+    
+</div>
+<script type="text/javascript">
+    $(".ped").click(function() {
+        
+        //alert( $("#enlace-2").attr("id")); 
+        var dato = $(this).attr("id");
+
+        var peticion = $.ajax({
+            url: 'http://http://162.243.173.93:8081/katalogo_php/pedidos/ajaxproductopedido',
+            //url: 'http://localhost/tumenu/ajax/cargarPlatos',
+            type: 'POST',
+            data: {pedido_id: dato},
+            success: function(respuesta) {
+                $("#detalle").html(respuesta);
+            },
+        });
+    });
+    
+    $("#recargar").click(function(){
+    
+        location.reload(true);
+    });
+    
+</script>
