@@ -18,7 +18,7 @@ class PedidosController extends AppController {
     function index() {
         $pr = new Pedido();
         $this->arr = array();
-        $this->arr = $pr->find();
+        $this->arr = $pr->find("order ASC");
        
     }
 
