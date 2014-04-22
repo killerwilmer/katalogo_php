@@ -19,8 +19,8 @@
         $bd = Conexion::devolverCon();
         $result = $bd->query("select descripcion from misproductos where idproducto='$o->id'");
         
-        while($res = $result->fetchArray(SQLITE3_ASSOC)){
-            echo $res;
+        while($res = $result->fetchArray()){
+            echo $res[0];
         }
         ?></td>
         <td><?=$o->pedido_id?></td>
