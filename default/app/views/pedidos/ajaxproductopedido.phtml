@@ -20,7 +20,7 @@
         $result = $bd->query("select descripcion from misproductos where idproducto='$o->id'");
         
         while($res = $result->fetchArray(SQLITE3_ASSOC)){
-            echo $res["descripcion"];
+            echo $res[0];
         }
         ?></td>
         <td><?=$o->pedido_id?></td>
