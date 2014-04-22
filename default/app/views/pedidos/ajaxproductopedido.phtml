@@ -17,10 +17,10 @@
         
         <td><?
         $bd = Conexion::devolverCon();
-        $result = $bd->query("select descripcion from misproductos where idproducto='$o->id'");
+        $result = $bd->query("select descripcion from misproductos where idproducto='$o->producto_id'");
         
         while($res = $result->fetchArray()){
-            echo $res[0];
+            echo $res["descripcion"];
         }
         ?></td>
         <td><?=$o->pedido_id?></td>
