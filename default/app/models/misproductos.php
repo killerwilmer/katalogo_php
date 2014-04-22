@@ -10,7 +10,7 @@
  *
  * @author usuario
  */
-class Producto extends ActiveRecord{
+class Misproductos extends ActiveRecord{
     //put your code here
 }
 
